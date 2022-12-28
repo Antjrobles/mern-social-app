@@ -10,6 +10,7 @@ import path from 'path';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
+import authRoutes from './routes/auth.js';
 import { register } from './controllers/auth.js';
 
 /* MIDDLEWARE CONFIGURATIONS */ 
@@ -45,6 +46,9 @@ const upload = multer({ storage: storage });
 app.post('/auth/register', upload.single('picture'), register); // register route
 
 
+
+/* ROUTES */
+app.use('/auth', authRoutes);
 
 /* MONGOOSE CONFIGURATIONS */
 const PORT = process.env.PORT || 6001;
